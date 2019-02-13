@@ -9,24 +9,25 @@ class PostController extends Controller
 {
 	public function __construct()
 	{
-		//$this->middleware('auth');
+//		$this->middleware('auth');
 	}
 
 	public function index()
 	{
+		$this->authorize('view', Post::class);
 		$posts = Post::paginate(10);
 		return view('posts.index')->with(['posts' => $posts]);
 	}
 
 	public function create()
 	{
-//		$this->authorize('create-posts');
+		$this->authorize('create', Post::class);
 		return view('posts.create');
 	}
 
 	public function store(Request $request)
 	{
-//		$this->authorize('create-posts');
+		$this->authorize('create', Post::class);
         $data = $request->merge(['user_id' => $request->user()->id], $request->only(['title', 'body']))->toArray();
 		$post = Post::create($data);
 		return redirect()->route('posts.show', $post->id);
@@ -34,14 +35,14 @@ class PostController extends Controller
 
 	public function edit($id)
 	{
-//		$this->authorize('update', Post::findOrFail($id));
+		$this->authorize('update', Post::findOrFail($id));
 		$post = Post::findOrFail($id);
 		return view('posts.edit', compact('post'));
 	}
 
 	public function update($id, Request $request)
 	{
-//		$this->authorize('update-posts');
+		$this->authorize('update', Post::findOrFail($id));
         $data = $request->merge(['user_id' => $request->user()->id], $request->only(['title', 'body']))->toArray();
         Post::findOrFail($id)->update($data);
 
@@ -51,13 +52,14 @@ class PostController extends Controller
 
 	public function show($id)
 	{
-//		$this->authorize('view-posts');
+		$this->authorize('view', Post::class);
 		$post = Post::findOrFail($id);
 		return view('posts.show')->with(['post' => $post]);
 	}
 
 	public function delete($id)
     {
+    	$this->authorize('delete', Post::findOrFail($id));
         Post::findOrFail($id)->delete();
         return redirect()->route('posts.index');
     }

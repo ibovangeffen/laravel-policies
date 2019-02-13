@@ -19,7 +19,7 @@ class PostPolicy
      */
     public function view(User $user)
     {
-        return $user->role !== 'admin';
+        return $user->role->name === 'user' || $user->role->name === 'admin';
     }
 
     /**
@@ -30,7 +30,7 @@ class PostPolicy
      */
     public function create(User $user)
     {
-        return $user->role === 'author';
+        return $user->role->name === 'admin';
     }
 
     /**
@@ -40,9 +40,9 @@ class PostPolicy
      * @param  \App\Post  $post
      * @return mixed
      */
-    public function update(User $user, Post $post)
+    public function update(User $user)
     {
-        return $user->role === 'editor' || $post->user_id == $user->id;
+        return $user->role->name === 'admin';
     }
 
     /**
@@ -52,13 +52,8 @@ class PostPolicy
      * @param  \App\Post  $post
      * @return mixed
      */
-    public function publish(User $user)
-    {
-        return $user->role === 'admin' || $user->role === 'editor';
-    }
-
-    public function viewDrafts(User $user)
+    public function delete(User $user)
 	{
-		return $user->role === 'editor';
+		return $user->role->name === 'admin';
 	}
 }

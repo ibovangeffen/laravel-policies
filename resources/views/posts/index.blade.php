@@ -8,7 +8,9 @@
                 <div class="card">
                     <div class="card-header">
                         Lists of Posts
-                        <a href="{{ route('posts.create') }}" class="btn btn-primary btn-sm float-right">Create</a>
+                        @can('create', \App\Post::class)
+                            <a href="{{ route('posts.create') }}" class="btn btn-primary btn-sm float-right">Create</a>
+                        @endcan
                     </div>
                     <div class="card-body">
                         <table class="table">
@@ -26,14 +28,16 @@
                                     <th scope="row">{{ $post->id }}</th>
                                     <td><a href="{{ route('posts.show', $post->id) }}">{{ $post->title }}</a></td>
                                     <td>{{ $post->created_at->diffForHumans () }}</td>
-                                    <td>
-                                        <form action="{{ route('posts.delete', $post->id) }}" method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            <input type="submit" class="btn btn-danger btn-sm" value="DELETE" />
+                                    @can('delete', \App\Post::class)
+                                        <td>
+                                            <form action="{{ route('posts.delete', $post->id) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <input type="submit" class="btn btn-danger btn-sm" value="DELETE" />
 
-                                        </form>
-                                    </td>
+                                            </form>
+                                        </td>
+                                    @endcan
                                 </tr>
                             @endforeach
                             </tbody>

@@ -13,24 +13,24 @@ class UsersSeeder extends Seeder
     public function run()
     {
 		User::create([
-			'name' => 'Author',
-			'email' => 'author@app.com',
+			'name' => 'User',
+			'email' => 'user@app.com',
 			'password' => bcrypt('password'),
-			'role' => 'author',
-		]);
-
-		User::create([
-			'name' => 'Editor',
-			'email' => 'editor@app.com',
-			'password' => bcrypt('password'),
-			'role' => 'editor',
+			'role_id' => 1,
 		]);
 
 		User::create([
 			'name' => 'Admin',
 			'email' => 'admin@app.com',
 			'password' => bcrypt('password'),
-			'role' => 'admin',
+			'role_id' => 2,
 		]);
+
+//		User::create([
+//			'name' => 'Admin',
+//			'email' => 'admin@app.com',
+//			'password' => bcrypt('password'),
+//			'role' => 'admin',
+//		]);
     }
 }
