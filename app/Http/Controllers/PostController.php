@@ -49,15 +49,6 @@ class PostController extends Controller
 
 	}
 
-	public function publish($id)
-	{
-		$this->authorize('publish-posts');
-		$post = Post::findOrFail($id);
-		$post->published = true;
-		$post->save();
-		return back();
-	}
-
 	public function show($id)
 	{
 //		$this->authorize('view-posts');
