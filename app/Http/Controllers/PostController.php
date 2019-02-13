@@ -9,45 +9,43 @@ class PostController extends Controller
 {
 	public function __construct()
 	{
-		$this->middleware('auth');
+		//$this->middleware('auth');
 	}
 
 	public function index()
 	{
-		$posts = Post::published()->paginate();
-		return view('posts/index', compact('posts'));
+		$posts = Post::paginate(10);
+		return view('posts.index')->with(['posts' => $posts]);
 	}
 
 	public function create()
 	{
-		$this->authorize('create-posts');
-		return view('posts/create');
+//		$this->authorize('create-posts');
+		return view('posts.create');
 	}
 
 	public function store(Request $request)
 	{
-		$this->authorize('create-posts');
-		$data = $request->only('title', 'body');
-		$data['slug'] = str_slug($data['title']);
-		$data['user_id'] = auth()->id();
+//		$this->authorize('create-posts');
+        $data = $request->merge(['user_id' => $request->user()->id], $request->only(['title', 'body']))->toArray();
 		$post = Post::create($data);
-		return redirect()->route('posts/show', ['id' => $post->id]);
+		return redirect()->route('posts.show', $post->id);
 	}
 
 	public function edit($id)
 	{
-		$this->authorize('update', Post::findOrFail($id));
+//		$this->authorize('update', Post::findOrFail($id));
 		$post = Post::findOrFail($id);
 		return view('posts.edit', compact('post'));
 	}
 
 	public function update($id, Request $request)
 	{
-		$this->authorize('update-posts');
-		$data = $request->only('title', 'body');
-		$data['slug'] = str_slug($data['title']);
-		Post::findOrFail($id)->update($data);
-		return redirect()->route('posts/show', ['id' => $id]);
+//		$this->authorize('update-posts');
+        $data = $request->merge(['user_id' => $request->user()->id], $request->only(['title', 'body']))->toArray();
+        Post::findOrFail($id)->update($data);
+
+		return redirect()->route('posts.show', $id);
 
 	}
 
@@ -60,23 +58,16 @@ class PostController extends Controller
 		return back();
 	}
 
-	public function drafts()
-	{
-		$this->authorize('view-drafts');
-		$postsQuery = Post::unpublished();
-
-//		if (Gate::denies('see-all-drafts')) {
-//			$postsQuery = $postsQuery->where('user_id', auth()->id());
-//		}
-
-		$posts = $postsQuery->paginate();
-		return view('posts.drafts', compact('posts'));
-	}
-
 	public function show($id)
 	{
-		$this->authorize('view-posts');
+//		$this->authorize('view-posts');
 		$post = Post::findOrFail($id);
-		return view('posts/show', compact('post'));
+		return view('posts.show')->with(['post' => $post]);
 	}
+
+	public function delete($id)
+    {
+        Post::findOrFail($id)->delete();
+        return redirect()->route('posts.index');
+    }
 }

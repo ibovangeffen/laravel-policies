@@ -61,23 +61,23 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <label for="role" class="col-md-4 control-label">User role</label>
+                        {{--<div class="form-group">--}}
+                            {{--<label for="role" class="col-md-4 control-label">User role</label>--}}
 
-                            <div class="col-md-6">
-                                <select id="role" class="form-control" name="role" required>
-                                    @foreach($roles as $role)
-                                        <option value="{{ $role }}">{{ ucfirst($role) }}</option>
-                                    @endforeach
-                                </select>
+                            {{--<div class="col-md-6">--}}
+                                {{--<select id="role" class="form-control" name="role" required>--}}
+                                    {{--@foreach($roles as $role)--}}
+                                        {{--<option value="{{ $role }}">{{ ucfirst($role) }}</option>--}}
+                                    {{--@endforeach--}}
+                                {{--</select>--}}
 
-                                @if ($errors->has('role'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('role') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+                                {{--@if ($errors->has('role'))--}}
+                                    {{--<span class="help-block">--}}
+                                        {{--<strong>{{ $errors->first('role') }}</strong>--}}
+                                    {{--</span>--}}
+                                {{--@endif--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">

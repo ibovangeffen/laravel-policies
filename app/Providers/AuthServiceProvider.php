@@ -28,6 +28,6 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        $this->registerPostGates();
+        //$this->registerPostGates();
     }
 }
