@@ -5,6 +5,7 @@ namespace App\Policies;
 use App\User;
 use App\Post;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Illuminate\Support\Facades\Auth;
 
 class PostPolicy
 {
@@ -19,7 +20,12 @@ class PostPolicy
      */
     public function view(User $user)
     {
-        return $user->role->name === 'user' || $user->role->name === 'admin';
+//        return $user->role->name === 'user' || $user->role->name === 'admin';
+        if (Auth::check()) {
+        	return true;
+		} else {
+        	return redirect()->route('login');
+		}
     }
 
     /**
