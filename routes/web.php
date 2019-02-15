@@ -34,4 +34,9 @@ Route::middleware('auth')->group(function() {
 		Route::get('/{id}/edit', 'PoliciesController@edit')->name('policies/edit');
 		Route::patch('/{id}', 'PoliciesController@update')->name('policies/update');
 	});
+
+	Route::prefix('roles')->group(function() {
+		Route::get('/create', 'RolesController@create')->name('roles/create');
+		Route::post('/', 'RolesController@store')->name('roles/store');
+	});
 });

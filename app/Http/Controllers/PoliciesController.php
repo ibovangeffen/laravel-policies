@@ -17,6 +17,11 @@ class PoliciesController extends Controller
 		]);
 	}
 
+	public function create()
+	{
+		return view('policies/create');
+	}
+
 	public function edit($id)
 	{
 		$this->authorize('update', Policy::class);

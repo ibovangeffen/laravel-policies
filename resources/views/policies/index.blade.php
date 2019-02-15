@@ -41,7 +41,7 @@
 					<div class="card-header">
 						Roles
 						@can('update', \App\Policy::class)
-							<a href="{{ route('policies/create') }}" class="btn btn-primary btn-sm float-right">Create</a>
+							<a href="{{ route('roles/create') }}" class="btn btn-primary btn-sm float-right">Create</a>
 						@endcan
 					</div>
 					<div class="card-body">

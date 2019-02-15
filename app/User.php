@@ -28,8 +28,6 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-//    hasPolicy(['post-view', 'post-update']);
-
     public function hasPolicy($policies, $model = null)
 	{
 		// model can be passed for view-drafts for example, else the function would search for the drafts model
