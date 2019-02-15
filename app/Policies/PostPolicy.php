@@ -20,12 +20,7 @@ class PostPolicy
      */
     public function view(User $user)
     {
-//        return $user->role->name === 'user' || $user->role->name === 'admin';
-        if (Auth::check()) {
-        	return true;
-		} else {
-        	return redirect()->route('login');
-		}
+        return Auth::check();
     }
 
     /**
@@ -36,7 +31,7 @@ class PostPolicy
      */
     public function create(User $user)
     {
-        return $user->role->name === 'admin';
+        return $user->role->name === 'admin' || $user->role->name === 'author';
     }
 
     /**
@@ -46,9 +41,9 @@ class PostPolicy
      * @param  \App\Post  $post
      * @return mixed
      */
-    public function update(User $user)
+    public function update(User $user, Post $post)
     {
-        return $user->role->name === 'admin';
+        return $user->role->name === 'admin' || $user->role->name === 'editor' || $user->id == $post->user_id;
     }
 
     /**
@@ -61,5 +56,15 @@ class PostPolicy
     public function delete(User $user)
 	{
 		return $user->role->name === 'admin';
+	}
+
+	public function viewDrafts(User $user)
+	{
+		return $user->role->name === 'admin' || $user->role->name === 'editor';
+	}
+
+	public function publish(User $user)
+	{
+		return $user->role->name === 'admin' || $user->role->name === 'editor';
 	}
 }

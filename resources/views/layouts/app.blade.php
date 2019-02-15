@@ -34,7 +34,7 @@
 				<!-- Left Side Of Navbar -->
 				<ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('posts.index') }}">Posts</a>
+                        <a class="nav-link" href="{{ route('posts/index') }}">Posts</a>
                     </li>
 				</ul>
 
@@ -57,7 +57,7 @@
 							</a>
 
 							<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-								@can('view-drafts')
+								@can('view-drafts', \App\Post::class)
 									<a class="dropdown-item" href="{{ route('posts/drafts') }}">Drafts</a>
 								@endcan
 								<a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

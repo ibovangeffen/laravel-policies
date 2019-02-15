@@ -3,31 +3,41 @@
 @section('content')
 	<div class="container">
 		<div class="row">
-			<div class="col-md-8 col-md-offset-2">
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						Drafts <a class="btn btn-sm btn-default pull-right" href="{{ route('posts') }}">Return</a>
-					</div>
+			<div class="col-md-8 offset-2">
 
-					<div class="panel-body">
-						<div class="row">
+				<div class="card">
+					<div class="card-header">
+						Drafts
+						<a href="{{ route('posts/index') }}" class="btn btn-primary btn-sm float-right">Go back</a>
+					</div>
+					<div class="card-body">
+						<table class="table">
+							<thead>
+							<tr>
+								<th scope="col">#</th>
+								<th scope="col">Title</th>
+								<th scope="col">Created at</th>
+								<th scope="col">Actions</th>
+							</tr>
+							</thead>
+							<tbody>
 							@foreach($posts as $post)
-								<div class="col-sm-6 col-md-4">
-									<div class="thumbnail">
-										<div class="caption">
-											<h3><a href="{{ route('posts/show', ['id' => $post->id]) }}">{{ $post->title }}</a></h3>
-											<p>{{ str_limit($post->body, 50) }}</p>
-											<p>
-												@can('publish', $post)
-													<a href="{{ route('posts/publish', ['id' => $post->id]) }}" class="btn btn-sm btn-default" role="button">Publish</a>
-												@endcan
-												<a href="{{ route('posts/edit', ['id' => $post->id]) }}" class="btn btn-default" role="button">Edit</a>
-											</p>
-										</div>
-									</div>
-								</div>
+								<tr>
+									<th scope="row">{{ $post->id }}</th>
+									<td><a href="{{ route('posts/show', $post->id) }}">{{ $post->title }}</a></td>
+									<td>{{ $post->created_at->diffForHumans () }}</td>
+									<td>
+										@can('update', $post)
+											<a href="{{ route('posts/edit', $post->id) }}" class="btn btn-warning btn-sm" style="margin-right: 10px;">Edit</a>
+										@endcan
+										@can('publish', $post)
+											<a href="{{ route('posts/publish', $post->id) }}" class="btn btn-success btn-sm">Publish</a>
+										@endcan
+									</td>
+								</tr>
 							@endforeach
-						</div>
+							</tbody>
+						</table>
 					</div>
 				</div>
 			</div>

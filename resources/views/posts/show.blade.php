@@ -13,9 +13,9 @@
                         <p class="card-text">{{ $post->body }}</p>
                     </div>
                     <div class="card-footer text-muted">
-                        <a href="{{ route('posts.index') }}" class="btn btn-primary">Return</a>
-						@can('update', \App\Post::class)
-                        	<a href="{{ route('posts.edit', $post->id) }}" class="btn btn-primary float-right">Edit</a>
+                        <a href="{{ route('posts/index') }}" class="btn btn-primary">Return</a>
+						@can('update', $post)
+                        	<a href="{{ route('posts/edit', $post->id) }}" class="btn btn-primary float-right">Edit</a>
 						@endcan
                     </div>
                 </div>

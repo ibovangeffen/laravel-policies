@@ -10,7 +10,7 @@
                         Update Post
                     </div>
                     <div class="card-body">
-                        <form class="form-horizontal" role="form" method="POST" action="{{ route('posts.update', $post->id) }}">
+                        <form class="form-horizontal" role="form" method="POST" action="{{ route('posts/update', $post->id) }}">
                             @csrf
                             @method('PATCH')
                             <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
@@ -45,7 +45,7 @@
                                     <button type="submit" class="btn btn-primary">
                                         Update
                                     </button>
-                                    <a href="{{ route('posts.index') }}" class="btn btn-primary">
+                                    <a href="{{ route('posts/index') }}" class="btn btn-primary">
                                         Cancel
                                     </a>
                                 </div>

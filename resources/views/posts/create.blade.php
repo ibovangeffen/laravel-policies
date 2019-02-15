@@ -10,7 +10,7 @@
                         New Post
                     </div>
                     <div class="card-body">
-                        <form class="form-horizontal" role="form" method="POST" action="{{ route('posts.index') }}">
+                        <form class="form-horizontal" role="form" method="POST" action="{{ route('posts/index') }}">
                             @csrf
                             <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
                                 <label for="title" class="col-md-4 control-label">Title</label>
@@ -44,7 +44,7 @@
                                     <button type="submit" class="btn btn-primary">
                                         Create
                                     </button>
-                                    <a href="{{ route('posts.index') }}" class="btn btn-primary">
+                                    <a href="{{ route('posts/index') }}" class="btn btn-primary">
                                         Cancel
                                     </a>
                                 </div>

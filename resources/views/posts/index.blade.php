@@ -9,7 +9,7 @@
                     <div class="card-header">
                         Lists of Posts
                         @can('create', \App\Post::class)
-                            <a href="{{ route('posts.create') }}" class="btn btn-primary btn-sm float-right">Create</a>
+                            <a href="{{ route('posts/create') }}" class="btn btn-primary btn-sm float-right">Create</a>
                         @endcan
                     </div>
                     <div class="card-body">
@@ -26,14 +26,14 @@
                             @foreach($posts as $post)
                                 <tr>
                                     <th scope="row">{{ $post->id }}</th>
-                                    <td><a href="{{ route('posts.show', $post->id) }}">{{ $post->title }}</a></td>
+                                    <td><a href="{{ route('posts/show', $post->id) }}">{{ $post->title }}</a></td>
                                     <td>{{ $post->created_at->diffForHumans () }}</td>
                                     @can('delete', \App\Post::class)
                                         <td>
-                                            <form action="{{ route('posts.delete', $post->id) }}" method="POST">
+                                            <form action="{{ route('posts/delete', $post->id) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
-                                                <input type="submit" class="btn btn-danger btn-sm" value="DELETE" />
+                                                <input type="submit" class="btn btn-danger btn-sm" value="Delete">
 
                                             </form>
                                         </td>
@@ -43,15 +43,7 @@
                             </tbody>
                         </table>
                     </div>
-
                 </div>
-
-
-
-
-
-
-
 			</div>
 		</div>
 	</div>

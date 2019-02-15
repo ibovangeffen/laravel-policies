@@ -14,4 +14,9 @@ class Role extends Model
 	{
 		return $this->belongsToMany(User::class);
 	}
+
+	public function policies()
+	{
+		return $this->hasMany(Policy::class);
+	}
 }
