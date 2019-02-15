@@ -60,12 +60,14 @@
 								@can('view-drafts', \App\Post::class)
 									<a class="dropdown-item" href="{{ route('posts/drafts') }}">Drafts</a>
 								@endcan
+								@can('view', \App\Policy::class)
+									<a class="dropdown-item" href="{{ route('policies/index') }}">Policies</a>
+								@endcan
 								<a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
 									{{ __('Logout') }}
 								</a>
 
-								<form id="logout-form" action="{{ route('logout') }}" method="POST"
-									  style="display: none;">
+								<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
 									@csrf
 								</form>
 							</div>
@@ -79,6 +81,8 @@
 	<main class="py-4">
 		@yield('content')
 	</main>
+
+	@yield('js')
 </div>
 </body>
 </html>

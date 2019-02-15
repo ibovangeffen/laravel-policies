@@ -20,7 +20,8 @@ class PostPolicy
      */
     public function view(User $user)
     {
-        return Auth::check();
+//        return Auth::check();
+		return $user->hasPolicy('view-post');
     }
 
     /**
@@ -31,7 +32,8 @@ class PostPolicy
      */
     public function create(User $user)
     {
-        return $user->role->name === 'admin' || $user->role->name === 'author';
+//        return $user->role->name === 'admin' || $user->role->name === 'author';
+		return $user->hasPolicy('create-post');
     }
 
     /**
@@ -60,7 +62,7 @@ class PostPolicy
 
 	public function viewDrafts(User $user)
 	{
-		return $user->role->name === 'admin' || $user->role->name === 'editor';
+		return $user->hasPolicy('view-drafts', 'post');
 	}
 
 	public function publish(User $user)

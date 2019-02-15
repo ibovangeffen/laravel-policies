@@ -15,14 +15,23 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
 
-Route::prefix('posts')->middleware('auth')->group(function() {
-	Route::get('/', 'PostController@index')->name('posts/index');
-	Route::get('/create', 'PostController@create')->name('posts/create');
-    Route::post('/', 'PostController@store')->name('posts/store');
-    Route::get('/{id}/view', 'PostController@show')->name('posts/show');
-    Route::get('/{id}/edit', 'PostController@edit')->name('posts/edit');
-    Route::patch('/{id}', 'PostController@update')->name('posts/update');
-    Route::delete('/{id}', 'PostController@delete')->name('posts/delete');
-    Route::get('/drafts', 'PostController@drafts')->name('posts/drafts');
-    Route::get('/{id}/publish', 'PostController@publish')->name('posts/publish');
+Route::middleware('auth')->group(function() {
+	Route::prefix('posts')->group(function() {
+		Route::get('/', 'PostController@index')->name('posts/index');
+		Route::get('/create', 'PostController@create')->name('posts/create');
+		Route::post('/', 'PostController@store')->name('posts/store');
+		Route::get('/{id}/view', 'PostController@show')->name('posts/show');
+		Route::get('/{id}/edit', 'PostController@edit')->name('posts/edit');
+		Route::patch('/{id}', 'PostController@update')->name('posts/update');
+		Route::delete('/{id}', 'PostController@delete')->name('posts/delete');
+		Route::get('/drafts', 'PostController@drafts')->name('posts/drafts');
+		Route::get('/{id}/publish', 'PostController@publish')->name('posts/publish');
+	});
+
+	Route::prefix('policies')->group(function() {
+		Route::get('/', 'PoliciesController@index')->name('policies/index');
+		Route::get('/create', 'PoliciesController@create')->name('policies/create');
+		Route::get('/{id}/edit', 'PoliciesController@edit')->name('policies/edit');
+		Route::patch('/{id}', 'PoliciesController@update')->name('policies/update');
+	});
 });

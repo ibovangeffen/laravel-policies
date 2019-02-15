@@ -13,12 +13,13 @@ class CreatePolicyRolesTable extends Migration
      */
     public function up()
     {
-        Schema::create('policy_roles', function (Blueprint $table) {
+        Schema::create('policy_role', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('policy_id');
             $table->foreign('policy_id')->references('id')->on('policies');
             $table->unsignedInteger('role_id');
             $table->foreign('role_id')->references('id')->on('roles');
+            $table->unique('policy_id', 'role_id');
             $table->timestamps();
         });
     }

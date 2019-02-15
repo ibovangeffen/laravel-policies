@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Policy extends Model
 {
     protected $fillable = [
-    	'name',
+    	'model', 'action',
 	];
 
     public function roles()
