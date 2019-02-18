@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Role;
 use Illuminate\Http\Request;
+use App\Role;
 use App\User;
 
 class RolesController extends Controller
@@ -28,6 +28,23 @@ class RolesController extends Controller
 		$role->fill($request->only($role->getFillable()));
 		$role->save();
 
+		return redirect()->route('policies/index');
+	}
+
+	public function link()
+	{
+		return view('roles/link', [
+			'users' => User::all(),
+			'roles' => Role::all(),
+		]);
+	}
+
+	public function linkUser(Request $request)
+	{
+		$role = Role::where([['name', $request->role], ['user_id', $request->user]])->first();
+		empty($role) ?
+			Role::create(['name' => $request->role, 'user_id' => $request->user]) :
+			Role::where('user_id', $request->user)->first()->update(['name' => $request->role]);
 		return redirect()->route('policies/index');
 	}
 }

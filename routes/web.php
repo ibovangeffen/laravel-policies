@@ -38,6 +38,8 @@ Route::middleware('auth')->group(function() {
 	Route::prefix('roles')->group(function() {
 		Route::get('/create', 'RolesController@create')->name('roles/create');
 		Route::post('/', 'RolesController@store')->name('roles/store');
+		Route::get('/link', 'RolesController@link')->name('roles/link');
+		Route::post('/link', 'RolesController@linkUser')->name('roles/link');
 	});
 
 	Route::prefix('comments')->group(function() {

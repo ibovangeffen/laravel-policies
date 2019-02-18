@@ -46,6 +46,11 @@ class PolicyPolicy
         return Gate::authorize('is-admin');
     }
 
+    public function link(User $user)
+	{
+		return Gate::authorize('is-admin');
+	}
+
     /**
      * Determine whether the user can delete the policy.
      *

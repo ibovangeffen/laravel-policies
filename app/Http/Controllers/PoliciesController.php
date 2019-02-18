@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Policy;
 use App\Role;
+use App\User;
 
 class PoliciesController extends Controller
 {
@@ -14,6 +15,7 @@ class PoliciesController extends Controller
 		return view('policies/index', [
 			'policies' => Policy::all(),
 			'roles' => Role::all(),
+			'users' => User::all(),
 		]);
 	}
 
