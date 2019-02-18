@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\DB;
 
 class User extends Authenticatable
 {
@@ -62,9 +63,9 @@ class User extends Authenticatable
 		}
 		$p = Policy::where([['model', $policy_array[1]], ['action', $policy_array[0]]])->whereHas(
 			'roles', function($query) {
-			$query->where('roles.id', $this->role->id);
-		}
-		)->get();
+			$query->where('name', $this->role->name);
+		})->get();
+
 		if ($p->isEmpty()) {
 			return false;
 		}
