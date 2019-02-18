@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Carbon\Carbon;
 
 class CommentsSeeder extends Seeder
 {
@@ -16,6 +17,7 @@ class CommentsSeeder extends Seeder
 			'body' => 'Lorem ipsum',
 			'user_id' => 5,
 			'post_id' => 1,
+			'created_at' => Carbon::now(),
 		]);
 
 		DB::table('comments')->insert([
@@ -23,6 +25,7 @@ class CommentsSeeder extends Seeder
 			'body' => 'Lorem ipsum',
 			'user_id' => 6,
 			'post_id' => 1,
+			'created_at' => Carbon::now(),
 		]);
 
 		DB::table('comments')->insert([
@@ -30,6 +33,7 @@ class CommentsSeeder extends Seeder
 			'body' => 'Lorem ipsum',
 			'user_id' => 5,
 			'post_id' => 1,
+			'created_at' => Carbon::now(),
 		]);
     }
 }

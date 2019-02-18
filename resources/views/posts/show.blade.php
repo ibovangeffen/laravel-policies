@@ -23,7 +23,8 @@
 				@foreach ($comments as $comment)
 					<div class="card" style="margin-bottom: 20px;">
 						<div class="card-header">
-							{{ $comment->title }}
+							<span>{{ $comment->title }}</span>
+							<span class="float-right">{{ $comment->created_at->diffForHumans() }}</span>
 							@can('delete', \App\Comment::class)
 								<form method="POST" action="{{ route('posts/delete', $comment->id) }}" class="float-right">
 									@csrf
