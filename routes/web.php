@@ -39,4 +39,13 @@ Route::middleware('auth')->group(function() {
 		Route::get('/create', 'RolesController@create')->name('roles/create');
 		Route::post('/', 'RolesController@store')->name('roles/store');
 	});
+
+	Route::prefix('comments')->group(function() {
+		Route::post('/', 'CommentController@store')->name('comments/store');
+		Route::delete('/{id}', 'CommentController@delete')->name('posts/delete');
+	});
+});
+
+Route::prefix('posts')->group(function() {
+	Route::get('/{id}/view', 'PostController@show')->name('posts/show');
 });

@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Comment;
+use App\Policies\CommentPolicy;
 use App\Policies\PolicyPolicy;
 use App\Policies\PostPolicy;
 use App\Policy;
@@ -18,8 +20,9 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         'App\Model' => 'App\Policies\ModelPolicy',
-		Post::class => PostPolicy::class,
+		Comment::class => CommentPolicy::class,
 		Policy::class => PolicyPolicy::class,
+		Post::class => PostPolicy::class,
     ];
 
     /**

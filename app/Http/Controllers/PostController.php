@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Comment;
 use Illuminate\Http\Request;
 use App\Post;
 
@@ -47,9 +48,11 @@ class PostController extends Controller
 
 	public function show($id)
 	{
-		$this->authorize('view', Post::class);
-		$post = Post::findOrFail($id);
-		return view('posts/show')->with(['post' => $post]);
+//		$this->authorize('view', Post::class);
+		return view('posts/show')->with([
+			'post' => Post::findOrFail($id),
+			'comments' => Comment::where('post_id', $id)->get(),
+		]);
 	}
 
 	public function delete($id)

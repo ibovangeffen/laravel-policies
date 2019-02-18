@@ -16,10 +16,10 @@ class CreatePolicyRolesTable extends Migration
         Schema::create('policy_role', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('policy_id');
-            $table->foreign('policy_id')->references('id')->on('policies');
             $table->unsignedInteger('role_id');
+			$table->foreign('policy_id')->references('id')->on('policies');
             $table->foreign('role_id')->references('id')->on('roles');
-            $table->unique('policy_id', 'role_id');
+            $table->unique(['policy_id', 'role_id']);
             $table->timestamps();
         });
     }

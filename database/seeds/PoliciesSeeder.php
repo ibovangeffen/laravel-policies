@@ -45,5 +45,20 @@ class PoliciesSeeder extends Seeder
 			'model' => 'policy',
 			'action' => 'update',
 		]);
+
+		DB::table('policies')->insert([
+			'model' => 'comment',
+			'action' => 'view',
+		]);
+
+		DB::table('policies')->insert([
+			'model' => 'comment',
+			'action' => 'create',
+		]);
+
+		DB::table('policies')->insert([
+			'model' => 'comment',
+			'action' => 'delete',
+		]);
     }
 }
