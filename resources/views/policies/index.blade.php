@@ -59,7 +59,11 @@
 								<tr>
 									<th scope="row">{{ $role->id }}</th>
 									<td>{{ ucfirst($role->name) }}</td>
-									<td>TODO: policies per role</td>
+									<td>
+										@foreach ($role->permissions() as $permission)
+											{{ $permission['model'] . ': ' . $permission['action'] . ', ' }}
+										@endforeach
+									</td>
 									<td>
 										@can('update', \App\Policy::class)
 											<a href="{{ route('policies/edit', $role->id) }}" class="btn btn-secondary btn-sm">Edit</a>

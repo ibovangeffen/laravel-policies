@@ -24,14 +24,14 @@
 					<div class="card" style="margin-bottom: 20px;">
 						<div class="card-header">
 							<span>{{ $comment->title }}</span>
-							<span class="float-right">{{ $comment->created_at->diffForHumans() }}</span>
 							@can('delete', \App\Comment::class)
-								<form method="POST" action="{{ route('posts/delete', $comment->id) }}" class="float-right">
+								<form method="POST" action="{{ route('posts/delete', $comment->id) }}" class="float-right" style="margin-left: 10px;">
 									@csrf
 									@method('DELETE')
 									<input type="submit" class="btn btn-danger btn-sm" value="Delete">
 								</form>
 							@endcan
+							<span class="float-right">{{ $comment->created_at->diffForHumans() }}</span>
 						</div>
 						<div class="card-body">
 							<p class="card-text">{{ $comment->body }}</p>

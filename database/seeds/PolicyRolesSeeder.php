@@ -76,6 +76,11 @@ class PolicyRolesSeeder extends Seeder
 
 		DB::table('policy_role')->insert([
 			'role_id' => 3,
+			'policy_id' => 6,
+		]);
+
+		DB::table('policy_role')->insert([
+			'role_id' => 3,
 			'policy_id' => 8,
 		]);
 

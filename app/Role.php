@@ -19,4 +19,9 @@ class Role extends Model
 	{
 		return $this->belongsToMany(Policy::class);
 	}
+
+	public function permissions()
+	{
+		return $this->policies()->select(['model', 'action'])->get()->toArray();
+	}
 }
