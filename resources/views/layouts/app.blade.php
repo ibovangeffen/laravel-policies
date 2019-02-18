@@ -36,6 +36,11 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('posts/index') }}">Posts</a>
                     </li>
+					@can('view', \App\Policy::class)
+						<li class="nav-item">
+							<a class="nav-link" href="{{ route('policies/index') }}">Policies</a>
+						</li>
+					@endcan
 				</ul>
 
 				<!-- Right Side Of Navbar -->
@@ -59,9 +64,6 @@
 							<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 								@can('view-drafts', \App\Post::class)
 									<a class="dropdown-item" href="{{ route('posts/drafts') }}">Drafts</a>
-								@endcan
-								@can('view', \App\Policy::class)
-									<a class="dropdown-item" href="{{ route('policies/index') }}">Policies</a>
 								@endcan
 								<a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
 									{{ __('Logout') }}
