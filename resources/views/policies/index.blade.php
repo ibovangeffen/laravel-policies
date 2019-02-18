@@ -60,8 +60,8 @@
 									<th scope="row">{{ $role->id }}</th>
 									<td>{{ ucfirst($role->name) }}</td>
 									<td>
-										@foreach ($role->permissions() as $permission)
-											{{ $permission['model'] . ': ' . $permission['action'] . ', ' }}
+										@foreach ($role->permissions() as $model => $actions)
+											<p style="margin: 0;">{{ ucfirst($model) }}: {{ implode(', ', $actions) }}</p>
 										@endforeach
 									</td>
 									<td>

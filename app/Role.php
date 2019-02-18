@@ -22,6 +22,13 @@ class Role extends Model
 
 	public function permissions()
 	{
-		return $this->policies()->select(['model', 'action'])->get()->toArray();
+		$policies_array = [];
+		$policies = $this->policies()->select(['model', 'action'])->get();
+
+		$policies->each(function($policy, $key) use (&$policies_array) {
+			$policies_array[$policy->model][] = $policy->action;
+		});
+
+		return $policies_array;
 	}
 }
