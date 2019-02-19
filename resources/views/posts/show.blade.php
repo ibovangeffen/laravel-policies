@@ -18,27 +18,29 @@
                     </div>
                 </div>
 
-				@if (url()->previous() != route('posts/drafts'))
-					<h2>Comments</h2>
-					@foreach ($comments as $comment)
-						<div class="card" style="margin-bottom: 20px;">
-							<div class="card-header">
-								<span>{{ $comment->title }}</span>
-								@can('delete', \App\Comment::class)
-									<form method="POST" action="{{ route('posts/delete', $comment->id) }}" class="float-right" style="margin-left: 10px;">
-										@csrf
-										@method('DELETE')
-										<input type="submit" class="btn btn-danger btn-sm" value="Delete">
-									</form>
-								@endcan
-								<span class="float-right">{{ $comment->created_at->diffForHumans() }}</span>
-							</div>
-							<div class="card-body">
-								<p class="card-text">{{ $comment->body }}</p>
-								<p class="card-text">{{ $comment->user->name }}</p>
-							</div>
-						</div>
-					@endforeach
+				@if (url()->previous() != route('posts/drafts') && url()->previous() != route('posts/create') && url()->previous() != route('posts/edit', $post->id ))
+					@can('view', \App\Comment::class)
+						<h2>Comments</h2>
+						@foreach ($comments as $comment)
+								<div class="card" style="margin-bottom: 20px;">
+									<div class="card-header">
+										<span>{{ $comment->title }}</span>
+										@can('delete', $comment)
+											<form method="POST" action="{{ route('posts/delete', $comment->id) }}" class="float-right" style="margin-left: 10px;">
+												@csrf
+												@method('DELETE')
+												<input type="submit" class="btn btn-danger btn-sm" value="Delete">
+											</form>
+										@endcan
+										<span class="float-right">{{ $comment->created_at->diffForHumans() }}</span>
+									</div>
+									<div class="card-body">
+										<p class="card-text">{{ $comment->body }}</p>
+										<p class="card-text">{{ $comment->user->name }}</p>
+									</div>
+								</div>
+						@endforeach
+					@endcan
 
 					@can('create', \App\Comment::class)
 						<div class="card">

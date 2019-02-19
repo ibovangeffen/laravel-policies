@@ -5,7 +5,6 @@ namespace App\Policies;
 use App\User;
 use App\Post;
 use Illuminate\Auth\Access\HandlesAuthorization;
-use Illuminate\Support\Facades\Auth;
 
 class PostPolicy
 {
@@ -20,7 +19,6 @@ class PostPolicy
      */
     public function view(User $user)
     {
-//        return Auth::check();
 		return $user->hasPolicy('view-post');
     }
 
@@ -32,7 +30,6 @@ class PostPolicy
      */
     public function create(User $user)
     {
-//        return $user->role->name === 'admin' || $user->role->name === 'author';
 		return $user->hasPolicy('create-post');
     }
 
@@ -45,7 +42,7 @@ class PostPolicy
      */
     public function update(User $user, Post $post)
     {
-        return $user->role->name === 'admin' || $user->role->name === 'editor' || $user->id == $post->user_id;
+    	return $user->hasPolicy('update-post');
     }
 
     /**
@@ -57,7 +54,7 @@ class PostPolicy
      */
     public function delete(User $user)
 	{
-		return $user->role->name === 'admin';
+		return $user->hasPolicy('delete-post');
 	}
 
 	public function viewDrafts(User $user)
@@ -67,6 +64,6 @@ class PostPolicy
 
 	public function publish(User $user)
 	{
-		return $user->role->name === 'admin' || $user->role->name === 'editor';
+		return $user->hasPolicy('publish-post');
 	}
 }
