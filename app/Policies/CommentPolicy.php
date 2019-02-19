@@ -3,7 +3,6 @@
 namespace App\Policies;
 
 use App\User;
-use App\Comment;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Support\Facades\Auth;
 

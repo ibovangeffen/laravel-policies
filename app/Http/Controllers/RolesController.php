@@ -41,7 +41,7 @@ class RolesController extends Controller
 
 	public function linkUser(Request $request)
 	{
-		$role = Role::where([['name', $request->role], ['user_id', $request->user]])->first();
+		$role = Role::where('user_id', $request->user)->first();
 		empty($role) ?
 			Role::create(['name' => $request->role, 'user_id' => $request->user]) :
 			Role::where('user_id', $request->user)->first()->update(['name' => $request->role]);
