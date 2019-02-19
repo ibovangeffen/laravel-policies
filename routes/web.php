@@ -38,6 +38,7 @@ Route::middleware('auth')->group(function() {
 	Route::prefix('roles')->group(function() {
 		Route::get('/create', 'RolesController@create')->name('roles/create');
 		Route::post('/', 'RolesController@store')->name('roles/store');
+		Route::delete('/{id}', 'RolesController@delete')->name('roles/delete');
 		Route::get('/link', 'RolesController@link')->name('roles/link');
 		Route::post('/link', 'RolesController@linkUser')->name('roles/link');
 	});

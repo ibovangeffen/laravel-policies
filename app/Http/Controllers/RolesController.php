@@ -22,6 +22,12 @@ class RolesController extends Controller
 		return redirect()->route('policies/index');
 	}
 
+	public function delete($id)
+	{
+		Role::findOrFail($id)->delete();
+		return redirect()->route('policies/index');
+	}
+
 	public function link()
 	{
 		return view('roles/link', [

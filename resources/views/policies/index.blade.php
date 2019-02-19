@@ -68,6 +68,13 @@
 											@can('update', \App\Policy::class)
 												<a href="{{ route('policies/edit', $role->id) }}" class="btn btn-secondary btn-sm">Edit</a>
 											@endcan
+											@can('delete', \App\Policy::class)
+												<form action="{{ route('roles/delete', $role->id) }}" method="POST">
+													@csrf
+													@method('DELETE')
+													<input type="submit" class="btn btn-danger btn-sm" value="Delete">
+												</form>
+											@endcan
 										</td>
 									</tr>
 								@endforeach
