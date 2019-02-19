@@ -20,7 +20,7 @@ class PolicyPolicy
      */
     public function view(User $user)
     {
-        return Gate::authorize('is-admin');
+        return $user->hasPolicy('update-policy');
     }
 
     /**
@@ -31,7 +31,7 @@ class PolicyPolicy
      */
     public function create(User $user)
     {
-        return Gate::authorize('is-admin');
+        return $user->hasPolicy('update-policy');
     }
 
     /**
@@ -43,12 +43,12 @@ class PolicyPolicy
      */
     public function update(User $user)
     {
-        return Gate::authorize('is-admin');
+        return $user->hasPolicy('update-policy');
     }
 
     public function link(User $user)
 	{
-		return Gate::authorize('is-admin');
+		return $user->hasPolicy('update-policy');
 	}
 
     /**
@@ -58,9 +58,9 @@ class PolicyPolicy
      * @param  \App\Policy  $policy
      * @return mixed
      */
-    public function delete(User $user, Policy $policy)
+    public function delete(User $user)
     {
-        //
+        return $user->hasPolicy('delete-policy');
     }
 
     /**

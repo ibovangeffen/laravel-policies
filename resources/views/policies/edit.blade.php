@@ -35,7 +35,11 @@
 										</div>
 									@endforeach
 									<select name="policies[]">
-										<option value="" selected>Select policy</option>
+                                        @if ($policies->isEmpty())
+                                            <option value="" selected>No policies left...</option>
+                                        @else
+										    <option value="" selected>Select policy</option>
+                                        @endif
 										@foreach($policies as $policy)
 											<option value="{{ $policy->id }}">{{ ucfirst($policy->model) . ' - ' . $policy->action }}</option>
 										@endforeach

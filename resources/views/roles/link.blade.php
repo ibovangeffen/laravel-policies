@@ -28,7 +28,7 @@
 								<div class="col-md-6">
 									<select name="role" id="role">
 										@foreach($roles as $role)
-											<option value="{{ $role->name }}">{{ ucfirst($role->name) }}</option>
+											<option value="{{ $role->id }}">{{ ucfirst($role->name) }}</option>
 										@endforeach
 									</select>
 								</div>

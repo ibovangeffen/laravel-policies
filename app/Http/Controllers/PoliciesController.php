@@ -27,9 +27,18 @@ class PoliciesController extends Controller
 	public function edit($id)
 	{
 		$this->authorize('update', Policy::class);
+
+		$role = Role::findOrFail($id);
+		$policy_ids = [];
+		$role->policies->each(function($policy, $key) use (&$policy_ids) {
+		    $policy_ids[] = $policy->id;
+        });
+
+		$policies = Policy::whereNotIn('id', $policy_ids)->get();
+
 		return view('policies/edit', [
 			'role' => Role::findOrFail($id),
-			'policies' => Policy::all(),
+			'policies' => $policies,
 		]);
 	}
 
@@ -38,6 +47,7 @@ class PoliciesController extends Controller
 		$ids = array_filter($request->policies, function($value) {
 			return !empty($value);
 		});
+
 		Role::findOrFail($id)->policies()->sync($ids);
 		return redirect()->route('policies/edit', ['id' => $id]);
 	}

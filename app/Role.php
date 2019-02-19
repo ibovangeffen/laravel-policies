@@ -7,12 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 class Role extends Model
 {
 	protected $fillable = [
-		'name', 'user_id',
+		'name'
 	];
 
 	public function users()
 	{
-		return $this->belongsToMany(User::class);
+		return $this->belongsToMany(User::class, 'users', 'role_id', 'id');
 	}
 
 	public function policies()

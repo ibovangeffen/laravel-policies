@@ -10,16 +10,7 @@ class RolesController extends Controller
 {
     public function create()
 	{
-		$users = User::all();
-		$new_users = [];
-		$users->each(function($user, $key) use (&$new_users) {
-
-			if (is_null($user->role)) {
-				$new_users[] = $user;
-			}
-		});
-
-		return view('roles/create', ['users' => $new_users]);
+		return view('roles/create');
 	}
 
 	public function store(Request $request)
@@ -41,10 +32,7 @@ class RolesController extends Controller
 
 	public function linkUser(Request $request)
 	{
-		$role = Role::where('user_id', $request->user)->first();
-		empty($role) ?
-			Role::create(['name' => $request->role, 'user_id' => $request->user]) :
-			Role::where('user_id', $request->user)->first()->update(['name' => $request->role]);
+		User::findOrFail($request->user)->update(['role_id' => $request->role]);
 		return redirect()->route('policies/index');
 	}
 }

@@ -25,17 +25,6 @@
 							</div>
 
 							<div class="form-group">
-								<label for="user">User to assign new role to</label>
-								<div class="col-md-6">
-									<select name="user_id" id="user">
-										@foreach($users as $user)
-											<option value="{{ $user->id }}">{{ $user->name }}</option>
-										@endforeach
-									</select>
-								</div>
-							</div>
-
-							<div class="form-group">
 								<div class="col-md-6 col-md-offset-4">
 									<button type="submit" class="btn btn-primary">Create</button>
 									<a href="{{ route('policies/index') }}" class="btn btn-primary">Cancel</a>
