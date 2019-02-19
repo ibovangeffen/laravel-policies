@@ -11,54 +11,25 @@ class PoliciesSeeder extends Seeder
      */
     public function run()
     {
-		DB::table('policies')->insert([
-			'model' => 'post',
-			'action' => 'view',
-		]);
+        $policies = [
+            'post' => [
+                'view', 'create', 'update', 'delete', 'publish', 'view-drafts'
+            ],
+            'policy' => [
+                'update', 'delete'
+            ],
+            'comment' => [
+                'view', 'create', 'delete'
+            ],
+        ];
 
-        DB::table('policies')->insert([
-			'model' => 'post',
-			'action' => 'create',
-		]);
-
-		DB::table('policies')->insert([
-			'model' => 'post',
-			'action' => 'update',
-		]);
-
-		DB::table('policies')->insert([
-			'model' => 'post',
-			'action' => 'delete',
-		]);
-
-		DB::table('policies')->insert([
-			'model' => 'post',
-			'action' => 'publish',
-		]);
-
-		DB::table('policies')->insert([
-			'model' => 'post',
-			'action' => 'view-drafts',
-		]);
-
-		DB::table('policies')->insert([
-			'model' => 'policy',
-			'action' => 'update',
-		]);
-
-		DB::table('policies')->insert([
-			'model' => 'comment',
-			'action' => 'view',
-		]);
-
-		DB::table('policies')->insert([
-			'model' => 'comment',
-			'action' => 'create',
-		]);
-
-		DB::table('policies')->insert([
-			'model' => 'comment',
-			'action' => 'delete',
-		]);
+        foreach ($policies as $model => $actions) {
+            foreach ($actions as $action) {
+                DB::table('policies')->insert([
+                    'model' => $model,
+                    'action' => $action,
+                ]);
+            }
+        }
     }
 }

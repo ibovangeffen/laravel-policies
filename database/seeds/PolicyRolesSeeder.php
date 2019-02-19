@@ -4,94 +4,44 @@ use Illuminate\Database\Seeder;
 
 class PolicyRolesSeeder extends Seeder
 {
-	/**
-	 * Run the database seeds.
-	 *
-	 * @return void
-	 */
-	public function run()
-	{
-		// Seeding User role
-		DB::table('policy_role')->insert([
-			'role_id' => 1,
-			'policy_id' => 1,
-		]);
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
 
-		DB::table('policy_role')->insert([
-			'role_id' => 1,
-			'policy_id' => 8,
-		]);
 
-		DB::table('policy_role')->insert([
-			'role_id' => 1,
-			'policy_id' => 9,
-		]);
+    public function run()
+    {
+        $policy_roles = [
+            // User role
+            1 => [
+                1, 9, 10,
+            ],
 
-		// Seeding author role
-		DB::table('policy_role')->insert([
-			'role_id' => 2,
-			'policy_id' => 1,
-		]);
+            // Author role
+            2 => [
+                1, 2, 3, 9, 10
+            ],
 
-		DB::table('policy_role')->insert([
-			'role_id' => 2,
-			'policy_id' => 2,
-		]);
+            // Editor role
+            3 => [
+                1, 3, 4, 5, 6, 9, 10, 11
+            ],
 
-		DB::table('policy_role')->insert([
-			'role_id' => 2,
-			'policy_id' => 3,
-		]);
+            // Admin role
+            4 => [
+                7, 8
+            ]
+        ];
 
-		DB::table('policy_role')->insert([
-			'role_id' => 2,
-			'policy_id' => 8,
-		]);
-
-		DB::table('policy_role')->insert([
-			'role_id' => 2,
-			'policy_id' => 9,
-		]);
-
-		// Seeding editor role
-		DB::table('policy_role')->insert([
-			'role_id' => 3,
-			'policy_id' => 1,
-		]);
-
-		DB::table('policy_role')->insert([
-			'role_id' => 3,
-			'policy_id' => 3,
-		]);
-
-		DB::table('policy_role')->insert([
-			'role_id' => 3,
-			'policy_id' => 4,
-		]);
-
-		DB::table('policy_role')->insert([
-			'role_id' => 3,
-			'policy_id' => 5,
-		]);
-
-		DB::table('policy_role')->insert([
-			'role_id' => 3,
-			'policy_id' => 6,
-		]);
-
-		DB::table('policy_role')->insert([
-			'role_id' => 3,
-			'policy_id' => 8,
-		]);
-
-		DB::table('policy_role')->insert([
-			'role_id' => 3,
-			'policy_id' => 9,
-		]);
-
-		DB::table('policy_role')->insert([
-			'role_id' => 3,
-			'policy_id' => 10,
-		]);
-	}
+        foreach ($policy_roles as $role => $policies) {
+            foreach ($policies as $policy) {
+                DB::table('policy_role')->insert([
+                    'role_id' => $role,
+                    'policy_id' => $policy,
+                ]);
+            }
+        }
+    }
 }
