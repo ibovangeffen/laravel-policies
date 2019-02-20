@@ -40,7 +40,7 @@ class PostPolicy
      * @param  \App\Post  $post
      * @return mixed
      */
-    public function update(User $user, Post $post)
+    public function update(User $user)
     {
     	return $user->hasPolicy('update-post');
     }

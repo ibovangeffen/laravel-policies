@@ -62,28 +62,4 @@ class PolicyPolicy
     {
         return $user->hasPolicy('delete-policy');
     }
-
-    /**
-     * Determine whether the user can restore the policy.
-     *
-     * @param  \App\User  $user
-     * @param  \App\Policy  $policy
-     * @return mixed
-     */
-    public function restore(User $user, Policy $policy)
-    {
-        //
-    }
-
-    /**
-     * Determine whether the user can permanently delete the policy.
-     *
-     * @param  \App\User  $user
-     * @param  \App\Policy  $policy
-     * @return mixed
-     */
-    public function forceDelete(User $user, Policy $policy)
-    {
-        //
-    }
 }
