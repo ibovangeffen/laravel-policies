@@ -39,34 +39,33 @@ class User extends Authenticatable
 		} else {
 			return $this->checkPolicy($policies, $model);
 		}
-
-		return true;
 	}
 
 	public function checkPolicy($policy, $model = null)
 	{
-		if (strpos($policy, '-') === false) {
-			return false;
+
+		if (strpos($policy, '-')) {
+			if (is_null($model)) {
+				$policy_array = explode('-', $policy);
+			} else {
+				$policy_array = [
+					0 => $policy,
+					1 => $model,
+				];
+			}
+			$p = Policy::where([
+				['model', $policy_array[1]],
+				['action', $policy_array[0]]
+			])->whereHas('roles', function ($query) {
+				$query->where('name', $this->role->name);
+			})->get();
+
+			if ($p->isNotEmpty()) {
+				return true;
+			}
 		}
 
-		if (is_null($model)) {
-			$policy_array = explode('-', $policy);
-		} else {
-			$policy_array = [
-				0 => $policy,
-				1 => $model,
-			];
-		}
-		$p = Policy::where([['model', $policy_array[1]], ['action', $policy_array[0]]])->whereHas(
-			'roles', function($query) {
-			$query->where('name', $this->role->name);
-		})->get();
-
-		if ($p->isEmpty()) {
-			return false;
-		}
-
-		return true;
+		return false;
 	}
 
     public function posts()
