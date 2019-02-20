@@ -25,6 +25,10 @@ class RolesController extends Controller
 	public function delete($id)
 	{
 		Role::findOrFail($id)->delete();
+		$users = User::where('role_id', $id)->get();
+		$users->each(function($user, $key) {
+			$user->update(['role_id' => 1]);
+		});
 		return redirect()->route('policies/index');
 	}
 
