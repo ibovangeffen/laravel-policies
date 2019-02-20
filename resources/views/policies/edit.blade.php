@@ -6,7 +6,7 @@
 			<div class="col-md-8 offset-2">
 
 				<div class="card">
-					<div class="card-header">Grant policies to the {{ ucfirst($role->name) }} role</div>
+					<div class="card-header">Edit {{ $role->name }} group its permissions</div>
 					<div class="card-body">
 						<form class="form-horizontal" role="form" method="POST" action="{{ route('policies/update', $role->id) }}">
 							@csrf

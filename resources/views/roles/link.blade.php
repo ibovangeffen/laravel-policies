@@ -6,7 +6,7 @@
 			<div class="col-md-8 offset-2">
 
 				<div class="card">
-					<div class="card-header">Link user to role</div>
+					<div class="card-header">Link user to a role</div>
 					<div class="card-body">
 						<form class="form-horizontal" role="form" method="POST" action="{{ route('roles/link') }}">
 							@csrf
@@ -36,7 +36,7 @@
 
 							<div class="form-group">
 								<div class="col-md-6 col-md-offset-4">
-									<button type="submit" class="btn btn-primary">Create</button>
+									<button type="submit" class="btn btn-primary">Link</button>
 									<a href="{{ route('policies/index') }}" class="btn btn-primary">Cancel</a>
 								</div>
 							</div>
