@@ -31,6 +31,7 @@ Route::middleware('auth')->group(function() {
 	Route::prefix('policies')->group(function() {
 		Route::get('/', 'PoliciesController@index')->name('policies/index');
 		Route::get('/create', 'PoliciesController@create')->name('policies/create');
+		Route::post('/', 'PoliciesController@store')->name('policies/store');
 		Route::get('/{id}/edit', 'PoliciesController@edit')->name('policies/edit');
 		Route::patch('/{id}', 'PoliciesController@update')->name('policies/update');
 		Route::delete('/{id}', 'PoliciesController@delete')->name('policies/delete');

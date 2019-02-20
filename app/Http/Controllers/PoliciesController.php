@@ -24,6 +24,14 @@ class PoliciesController extends Controller
 		return view('policies/create');
 	}
 
+	public function store(Request $request)
+	{
+		$policy = new Policy();
+		$policy->fill($request->only($policy->getFillable()));
+		$policy->save();
+		return redirect()->route('policies/index');
+	}
+
 	public function edit($id)
 	{
 		$this->authorize('update', Policy::class);
