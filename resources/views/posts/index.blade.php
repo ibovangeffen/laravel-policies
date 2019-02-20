@@ -15,18 +15,20 @@
                     <div class="card-body">
                         <table class="table">
                             <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Title</th>
-                                <th scope="col">Created at</th>
-                                <th scope="col">Actions</th>
-                            </tr>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Title</th>
+                                    <th scope="col">Created at</th>
+                                    <th scope="col">Actions</th>
+                                </tr>
                             </thead>
                             <tbody>
                             @foreach($posts as $post)
                                 <tr>
                                     <th scope="row">{{ $post->id }}</th>
-                                    <td><a href="{{ route('posts/show', $post->id) }}">{{ $post->title }}</a></td>
+                                    <td>
+                                        <a href="{{ route('posts/show', $post->id) }}">{{ $post->title }}</a>
+                                    </td>
                                     <td>{{ $post->created_at->diffForHumans () }}</td>
                                     @can('delete', \App\Post::class)
                                         <td>

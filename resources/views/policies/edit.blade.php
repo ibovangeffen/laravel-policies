@@ -46,8 +46,8 @@
 									</select>
 									@if ($errors->has('policies'))
 										<span class="help-block">
-                                        <strong>{{ $errors->first('policies') }}</strong>
-                                    </span>
+											<strong>{{ $errors->first('policies') }}</strong>
+										</span>
 									@endif
 								</div>
 							</div>

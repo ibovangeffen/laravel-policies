@@ -18,8 +18,8 @@
 									<input type="text" name="name" placeholder="Name" required>
 									@if ($errors->has('name'))
 										<span class="help-block">
-                                        <strong>{{ $errors->first('name') }}</strong>
-                                    </span>
+											<strong>{{ $errors->first('name') }}</strong>
+										</span>
 									@endif
 								</div>
 							</div>

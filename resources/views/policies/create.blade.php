@@ -18,8 +18,8 @@
 									<input type="text" name="model" placeholder="Model" required>
 									@if ($errors->has('model'))
 										<span class="help-block">
-                                        <strong>{{ $errors->first('model') }}</strong>
-                                    </span>
+											<strong>{{ $errors->first('model') }}</strong>
+										</span>
 									@endif
 								</div>
 							</div>
@@ -31,8 +31,8 @@
 									<input type="text" name="action" placeholder="Model" required>
 									@if ($errors->has('action'))
 										<span class="help-block">
-                                        <strong>{{ $errors->first('action') }}</strong>
-                                    </span>
+											<strong>{{ $errors->first('action') }}</strong>
+										</span>
 									@endif
 								</div>
 							</div>

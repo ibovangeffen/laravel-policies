@@ -14,12 +14,12 @@
 					<div class="card-body">
 						<table class="table">
 							<thead>
-							<tr>
-								<th scope="col">#</th>
-								<th scope="col">Model</th>
-								<th scope="col">Action</th>
-								<th scope="col">Actions</th>
-							</tr>
+								<tr>
+									<th scope="col">#</th>
+									<th scope="col">Model</th>
+									<th scope="col">Action</th>
+									<th scope="col">Actions</th>
+								</tr>
 							</thead>
 							<tbody>
 								@foreach($policies as $policy)
@@ -57,12 +57,12 @@
 					<div class="card-body">
 						<table class="table">
 							<thead>
-							<tr>
-								<th scope="col">#</th>
-								<th scope="col">Role</th>
-								<th scope="col">Permissions</th>
-								<th scope="col">Actions</th>
-							</tr>
+								<tr>
+									<th scope="col">#</th>
+									<th scope="col">Role</th>
+									<th scope="col">Permissions</th>
+									<th scope="col">Actions</th>
+								</tr>
 							</thead>
 							<tbody>
 								@foreach($roles as $role)
@@ -107,11 +107,11 @@
 					<div class="card-body">
 						<table class="table">
 							<thead>
-							<tr>
-								<th scope="col">#</th>
-								<th scope="col">User</th>
-								<th scope="col">Role</th>
-							</tr>
+								<tr>
+									<th scope="col">#</th>
+									<th scope="col">User</th>
+									<th scope="col">Role</th>
+								</tr>
 							</thead>
 							<tbody>
 								@foreach($users as $user)
