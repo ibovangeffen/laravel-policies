@@ -34,8 +34,11 @@ class User extends Authenticatable
 		// model can be passed for view-drafts for example, else the function would search for the drafts model
 		if (is_array($policies)) {
 			foreach ($policies as $policy) {
-				return $this->checkPolicy($policy, $model);
+				if ($this->checkPolicy($policy, $model) === false) {
+					return false;
+				}
 			}
+			return true;
 		} else {
 			return $this->checkPolicy($policies, $model);
 		}
