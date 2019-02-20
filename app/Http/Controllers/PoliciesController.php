@@ -51,4 +51,10 @@ class PoliciesController extends Controller
 		Role::findOrFail($id)->policies()->sync($ids);
 		return redirect()->route('policies/edit', ['id' => $id]);
 	}
+
+	public function delete($id)
+	{
+		Policy::findOrFail($id)->delete();
+		return redirect()->route('policies/index');
+	}
 }

@@ -33,6 +33,7 @@ Route::middleware('auth')->group(function() {
 		Route::get('/create', 'PoliciesController@create')->name('policies/create');
 		Route::get('/{id}/edit', 'PoliciesController@edit')->name('policies/edit');
 		Route::patch('/{id}', 'PoliciesController@update')->name('policies/update');
+		Route::delete('/{id}', 'PoliciesController@delete')->name('policies/delete');
 	});
 
 	Route::prefix('roles')->group(function() {

@@ -18,6 +18,7 @@
 								<th scope="col">#</th>
 								<th scope="col">Model</th>
 								<th scope="col">Action</th>
+								<th scope="col">Actions</th>
 							</tr>
 							</thead>
 							<tbody>
@@ -26,6 +27,15 @@
 										<th scope="row">{{ $policy->id }}</th>
 										<td>{{ ucfirst($policy->model) }}</td>
 										<td>{{ $policy->action }}</td>
+										<td>
+											@can('delete', \App\Policy::class)
+												<form action="{{ route('policies/delete', $policy->id) }}" method="POST">
+													@csrf
+													@method('DELETE')
+													<input type="submit" class="btn btn-danger btn-sm" value="Delete">
+												</form>
+											@endcan
+										</td>
 									</tr>
 								@endforeach
 							</tbody>
