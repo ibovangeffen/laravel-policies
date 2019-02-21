@@ -12,7 +12,7 @@ class Role extends Model
 
 	public function users()
 	{
-		return $this->belongsToMany(User::class, 'users', 'role_id', 'id');
+		return $this->hasMany(User::class);
 	}
 
 	public function policies()
